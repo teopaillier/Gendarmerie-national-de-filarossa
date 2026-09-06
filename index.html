@@ -7,130 +7,44 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="brand">
-    <div class="badge">GN</div>
-    <div><h1>Portail Gendarmerie RP</h1><small>Roblox • Discord — NON OFFICIEL</small></div>
+<div id="login" class="login-screen">
+  <div class="login-card">
+    <div class="badge big">GN</div>
+    <h1>Portail Gendarmerie RP</h1>
+    <p>Connexion à ton espace RP</p>
+    <input id="loginName" placeholder="Prénom NOM / Pseudo RP">
+    <select id="loginGrade">
+      <option>Élève gendarme</option><option>Gendarme</option><option>Brigadier</option><option>Maréchal des logis-chef</option><option>Adjudant</option><option>Officier</option><option>Administrateur RP</option>
+    </select>
+    <button class="primary full" onclick="login()">Entrer dans le portail</button>
+    <small>Outil fictif pour Roblox / Discord RP — non officiel.</small>
   </div>
-  <button id="themeBtn" class="ghost">☾</button>
+</div>
+
+<div id="app" class="hidden">
+<header>
+  <div class="brand"><div class="badge">GN</div><div><h1>Portail Gendarmerie RP</h1><small>Roblox • Discord — NON OFFICIEL</small></div></div>
+  <div class="userbar"><span id="userInfo"></span><button id="themeBtn" class="ghost">☾</button><button class="ghost" onclick="logout()">Déconnexion</button></div>
 </header>
-
 <nav>
-  <button class="nav active" data-page="dashboard">🏠 Accueil</button>
-  <button class="nav" data-page="intervention">🚔 Intervention</button>
-  <button class="nav" data-page="interpellation">⛓️ Interpellation</button>
-  <button class="nav" data-page="enquete">🔎 Enquête</button>
-  <button class="nav" data-page="audition">📝 Audition</button>
-  <button class="nav" data-page="controle">🚗 Contrôle</button>
-  <button class="nav" data-page="pv">📄 PV RP</button>
-  <button class="nav" data-page="dossiers">📁 Dossiers</button>
+  <button class="nav active" data-page="dashboard">🏠 Accueil</button><button class="nav" data-page="intervention">🚔 Intervention</button><button class="nav" data-page="interpellation">⛓️ Interpellation</button><button class="nav" data-page="enquete">🔎 Enquête</button><button class="nav" data-page="audition">📝 Audition</button><button class="nav" data-page="controle">🚗 Contrôle</button><button class="nav" data-page="pv">📄 PV RP</button><button class="nav" data-page="dossiers">📁 Dossiers</button>
 </nav>
-
 <main>
 <section id="dashboard" class="page active">
-  <div class="hero">
-    <span class="pill">ESPACE RP</span>
-    <h2>Centre documentaire de votre unité</h2>
-    <p>Créez rapidement vos documents RP, enregistrez-les dans le navigateur et imprimez-les en PDF.</p>
-  </div>
-  <div class="cards">
-    <div class="card"><b>🚔 Intervention</b><span>Rapport détaillé d'une intervention.</span><button onclick="show('intervention')">Créer</button></div>
-    <div class="card"><b>⛓️ Interpellation</b><span>Fiche RP d'interpellation.</span><button onclick="show('interpellation')">Créer</button></div>
-    <div class="card"><b>🔎 Enquête</b><span>Ouverture et suivi d'un dossier RP.</span><button onclick="show('enquete')">Créer</button></div>
-    <div class="card"><b>📝 Audition</b><span>Compte rendu d'audition fictive.</span><button onclick="show('audition')">Créer</button></div>
-  </div>
+  <div class="hero"><span class="pill">ESPACE RP</span><h2>Bienvenue, <span id="welcomeName"></span></h2><p>Crée et retrouve rapidement tes documents RP.</p></div>
+  <div class="stats"><div class="stat"><b id="statDocs">0</b><span>Documents</span></div><div class="stat"><b id="statEnq">0</b><span>Enquêtes</span></div><div class="stat"><b id="statInter">0</b><span>Interpellations</span></div></div>
+  <div class="cards"><div class="card"><b>🚔 Intervention</b><span>Rapport détaillé d'une intervention.</span><button onclick="show('intervention')">Créer</button></div><div class="card"><b>⛓️ Interpellation</b><span>Fiche RP d'interpellation.</span><button onclick="show('interpellation')">Créer</button></div><div class="card"><b>🔎 Enquête</b><span>Ouverture et suivi d'un dossier RP.</span><button onclick="show('enquete')">Créer</button></div><div class="card"><b>📝 Audition</b><span>Compte rendu d'audition fictive.</span><button onclick="show('audition')">Créer</button></div></div>
   <div class="notice">⚠️ Ce portail est un outil de jeu de rôle. Il n'est pas un site ni un système officiel de la Gendarmerie nationale.</div>
 </section>
 
-<section id="intervention" class="page"><div class="panel"><h2>🚔 Rapport d'intervention</h2>
-<form data-type="intervention">
-  <div class="grid">
-    <label>N° dossier<input name="numero" placeholder="INT-2026-001"></label>
-    <label>Date / heure<input name="date" type="datetime-local"></label>
-    <label>Militaire rédacteur<input name="redacteur"></label>
-    <label>Unité<input name="unite" placeholder="Brigade RP"></label>
-    <label>Lieu<input name="lieu"></label>
-    <label>Nature<input name="nature" placeholder="Trouble, accident, appel..."></label>
-  </div>
-  <label>Circonstances<textarea name="circonstances"></textarea></label>
-  <label>Actions réalisées<textarea name="actions"></textarea></label>
-  <label>Personnes / témoins<textarea name="personnes"></textarea></label>
-  <label>Suite donnée<textarea name="suite"></textarea></label>
-  <FormButtons></FormButtons>
-</form></div></section>
-
-<section id="interpellation" class="page"><div class="panel"><h2>⛓️ Fiche d'interpellation RP</h2>
-<form data-type="interpellation">
-  <div class="grid">
-    <label>N° dossier<input name="numero" placeholder="INTP-2026-001"></label>
-    <label>Date / heure<input name="date" type="datetime-local"></label>
-    <label>Militaire<input name="militaire"></label>
-    <label>Unité<input name="unite"></label>
-    <label>Personne concernée<input name="personne"></label>
-    <label>Lieu<input name="lieu"></label>
-    <label>Motif<input name="motif"></label>
-    <label>Présence de témoins<input name="temoins"></label>
-  </div>
-  <label>Circonstances<textarea name="circonstances"></textarea></label>
-  <label>Mesures RP / suites données<textarea name="mesures"></textarea></label>
-  <label>Objets ou éléments concernés<textarea name="objets"></textarea></label>
-  <label>Observations<textarea name="observations"></textarea></label>
-  <FormButtons></FormButtons>
-</form></div></section>
-
-<section id="enquete" class="page"><div class="panel"><h2>🔎 Ouverture d'enquête RP</h2>
-<form data-type="enquete">
-  <div class="grid">
-    <label>N° dossier<input name="numero" placeholder="ENQ-2026-001"></label>
-    <label>Date<input name="date" type="date"></label>
-    <label>Enquêteur<input name="enqueteur"></label>
-    <label>Unité<input name="unite"></label>
-    <label>Qualification RP<input name="qualification"></label>
-    <label>Lieu des faits<input name="lieu"></label>
-  </div>
-  <label>Résumé des faits<textarea name="faits"></textarea></label>
-  <label>Éléments connus<textarea name="elements"></textarea></label>
-  <label>Personnes / témoins<textarea name="personnes"></textarea></label>
-  <label>Orientations et suites RP<textarea name="suites"></textarea></label>
-  <FormButtons></FormButtons>
-</form></div></section>
-
-<section id="audition" class="page"><div class="panel"><h2>📝 Audition fictive</h2>
-<form data-type="audition">
-  <div class="grid">
-    <label>N° dossier<input name="numero"></label><label>Date / heure<input name="date" type="datetime-local"></label>
-    <label>Auditionneur<input name="auditionneur"></label><label>Personne entendue<input name="personne"></label>
-  </div>
-  <label>Objet de l'audition<textarea name="objet"></textarea></label>
-  <label>Déclarations<textarea name="declarations"></textarea></label>
-  <label>Observations RP<textarea name="observations"></textarea></label>
-  <FormButtons></FormButtons>
-</form></div></section>
-
-<section id="controle" class="page"><div class="panel"><h2>🚗 Contrôle routier RP</h2>
-<form data-type="controle">
-  <div class="grid">
-    <label>N° dossier<input name="numero"></label><label>Date / heure<input name="date" type="datetime-local"></label>
-    <label>Militaire<input name="militaire"></label><label>Lieu<input name="lieu"></label>
-    <label>Conducteur<input name="conducteur"></label><label>Véhicule / plaque RP<input name="vehicule"></label>
-  </div>
-  <label>Motif du contrôle<textarea name="motif"></textarea></label>
-  <label>Constatations RP<textarea name="constatations"></textarea></label>
-  <label>Suite donnée<textarea name="suite"></textarea></label>
-  <FormButtons></FormButtons>
-</form></div></section>
-
-<section id="pv" class="page"><div class="panel"><h2>📄 Procès-verbal RP</h2>
-<form data-type="pv">
-  <div class="grid"><label>N° PV<input name="numero"></label><label>Date<input name="date" type="date"></label>
-  <label>Rédacteur<input name="redacteur"></label><label>Unité<input name="unite"></label></div>
-  <label>Objet<textarea name="objet"></textarea></label><label>Exposé RP<textarea name="expose"></textarea></label>
-  <label>Pièces / annexes<textarea name="pieces"></textarea></label><label>Observations<textarea name="observations"></textarea></label>
-  <FormButtons></FormButtons>
-</form></div></section>
-
-<section id="dossiers" class="page"><div class="panel"><h2>📁 Dossiers enregistrés</h2><div id="list"></div></div></section>
+<section id="intervention" class="page"><div class="panel"><h2>🚔 Rapport d'intervention</h2><form data-type="intervention"><div class="grid"><label>N° dossier<input name="numero" placeholder="INT-2026-001"></label><label>Date / heure<input name="date" type="datetime-local"></label><label>Militaire rédacteur<input name="redacteur"></label><label>Unité<input name="unite" placeholder="Brigade RP"></label><label>Lieu<input name="lieu"></label><label>Nature<input name="nature"></label></div><label>Circonstances<textarea name="circonstances"></textarea></label><label>Actions réalisées<textarea name="actions"></textarea></label><label>Personnes / témoins<textarea name="personnes"></textarea></label><label>Suite donnée<textarea name="suite"></textarea></label><FormButtons></FormButtons></form></div></section>
+<section id="interpellation" class="page"><div class="panel"><h2>⛓️ Fiche d'interpellation RP</h2><form data-type="interpellation"><div class="grid"><label>N° dossier<input name="numero"></label><label>Date / heure<input name="date" type="datetime-local"></label><label>Militaire<input name="militaire"></label><label>Unité<input name="unite"></label><label>Personne concernée<input name="personne"></label><label>Lieu<input name="lieu"></label><label>Motif<input name="motif"></label><label>Témoins<input name="temoins"></label></div><label>Circonstances<textarea name="circonstances"></textarea></label><label>Mesures RP / suites données<textarea name="mesures"></textarea></label><label>Objets ou éléments concernés<textarea name="objets"></textarea></label><label>Observations<textarea name="observations"></textarea></label><FormButtons></FormButtons></form></div></section>
+<section id="enquete" class="page"><div class="panel"><h2>🔎 Ouverture d'enquête RP</h2><form data-type="enquete"><div class="grid"><label>N° dossier<input name="numero"></label><label>Date<input name="date" type="date"></label><label>Enquêteur<input name="enqueteur"></label><label>Unité<input name="unite"></label><label>Qualification RP<input name="qualification"></label><label>Lieu des faits<input name="lieu"></label></div><label>Résumé des faits<textarea name="faits"></textarea></label><label>Éléments connus<textarea name="elements"></textarea></label><label>Personnes / témoins<textarea name="personnes"></textarea></label><label>Orientations et suites RP<textarea name="suites"></textarea></label><FormButtons></FormButtons></form></div></section>
+<section id="audition" class="page"><div class="panel"><h2>📝 Audition fictive</h2><form data-type="audition"><div class="grid"><label>N° dossier<input name="numero"></label><label>Date / heure<input name="date" type="datetime-local"></label><label>Auditionneur<input name="auditionneur"></label><label>Personne entendue<input name="personne"></label></div><label>Objet de l'audition<textarea name="objet"></textarea></label><label>Déclarations<textarea name="declarations"></textarea></label><label>Observations RP<textarea name="observations"></textarea></label><FormButtons></FormButtons></form></div></section>
+<section id="controle" class="page"><div class="panel"><h2>🚗 Contrôle routier RP</h2><form data-type="controle"><div class="grid"><label>N° dossier<input name="numero"></label><label>Date / heure<input name="date" type="datetime-local"></label><label>Militaire<input name="militaire"></label><label>Lieu<input name="lieu"></label><label>Conducteur<input name="conducteur"></label><label>Véhicule / plaque RP<input name="vehicule"></label></div><label>Motif du contrôle<textarea name="motif"></textarea></label><label>Constatations RP<textarea name="constatations"></textarea></label><label>Suite donnée<textarea name="suite"></textarea></label><FormButtons></FormButtons></form></div></section>
+<section id="pv" class="page"><div class="panel"><h2>📄 Procès-verbal RP</h2><form data-type="pv"><div class="grid"><label>N° PV<input name="numero"></label><label>Date<input name="date" type="date"></label><label>Rédacteur<input name="redacteur"></label><label>Unité<input name="unite"></label></div><label>Objet<textarea name="objet"></textarea></label><label>Exposé RP<textarea name="expose"></textarea></label><label>Pièces / annexes<textarea name="pieces"></textarea></label><label>Observations<textarea name="observations"></textarea></label><FormButtons></FormButtons></form></div></section>
+<section id="dossiers" class="page"><div class="panel"><div class="panel-head"><h2>📁 Dossiers enregistrés</h2><button onclick="clearSearch()">Réinitialiser</button></div><input id="search" class="search" oninput="renderList()" placeholder="🔎 Rechercher par numéro, personne, unité..."><div id="list"></div></div></section>
 </main>
+</div>
 <script src="script.js"></script>
-</body>
-</html>
+</body></html>

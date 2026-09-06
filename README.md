@@ -1,14 +1,18 @@
-# Portail Gendarmerie RP
+# Portail Gendarmerie RP — V2
 
-Site statique gratuit pour un serveur Roblox / Discord RP.
+Site statique fictif pour Roblox / Discord RP.
 
-## Utilisation
-Ouvre `index.html` dans un navigateur.
-
-Les documents sont sauvegardés dans le stockage local du navigateur. Le bouton « Imprimer / PDF » permet de choisir « Enregistrer au format PDF ».
-
-## Mise en ligne gratuite
-Le dossier peut être publié sur GitHub Pages, Netlify ou Cloudflare Pages.
+## Nouveautés
+- Connexion RP locale avec pseudo et grade
+- Tableau de bord personnalisé
+- Statistiques des documents
+- Recherche dans les dossiers
+- Suppression et impression PDF
+- Mode sombre
 
 ## Important
-Ce site est un outil de jeu de rôle et n'est pas affilié à la Gendarmerie nationale. Les documents et formulaires sont des modèles fictifs.
+La connexion et les dossiers sont stockés dans le navigateur (localStorage). Ce n'est pas une vraie authentification Discord et les données ne sont pas partagées entre les joueurs.
+
+Pour une vraie connexion Discord et une base de données commune, il faut ajouter un backend et OAuth2 Discord.
+
+Ce site n'est pas affilié à la Gendarmerie nationale.
